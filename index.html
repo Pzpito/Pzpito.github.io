@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site d'histoire</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="fond-index">
+
+    <header>
+        <h1>Bienvenue sur mon site d'histoire</h1>
+        
+        <div class="login-area">
+            <form id="login-form">
+                <input type="email" id="email" placeholder="Adresse e-mail" required>
+                <input type="password" id="password" placeholder="Mot de passe" required>
+                <button type="submit">Connexion</button>
+            </form>
+            <span id="message-connexion" style="font-weight: bold; color: #d4af37;"></span>
+        </div>
+    </header>
+
+    <nav class="menu-principal">
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="pages/Espagne/espagne.html">Espagne (XIVe-XVIIe)</a></li>
+            <li><a href="pages/france/France.html">France (IVe-XVIIe)</a></li>
+            <li><a href="pages/Bretagne/Bretagne.html">Bretagne (IVe-XXe)</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h2>Découvrez l'histoire à travers les âges</h2>
+        <p>Sélectionnez une période ou une région dans le menu ci-dessus pour commencer votre voyage.</p>
+        </div>
+
+    <script>
+        const form = document.getElementById("login-form");
+        const message = document.getElementById("message-connexion");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            localStorage.setItem("email", email);
+            localStorage.setItem("connecte", "true");
+            message.textContent = `Bonjour, ${email}`;
+            form.style.display = "none";
+        });
+
+        const estConnecte = localStorage.getItem("connecte");
+        const emailStocke = localStorage.getItem("email");
+
+        if (estConnecte === "true" && emailStocke) {
+            form.style.display = "none";
+            message.textContent = `Bonjour, ${emailStocke}`;
+        }
+    </script>
+</body>
+</html>
+
+
