@@ -1,0 +1,284 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Georgia', serif;
+    color: white; /* Texte blanc par défaut pour lisibilité sur fond sombre */
+    position: relative;
+}
+
+/* --- GESTION DES FONDS FLOUTÉS --- */
+/* On crée un calque fixe derrière le contenu pour faire le flou */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place le fond derrière le texte */
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px); /* Intensité du flou */
+    transform: scale(1.1); /* Évite les bords blancs causés par le flou */
+}
+
+/* Images spécifiques par page (appliquées sur le ::before) */
+body.fond-index::before {
+background: #eb1700;
+background: linear-gradient(141deg, rgba(235, 23, 0, 1) 25%, rgba(0, 145, 235, 1) 65%, rgba(34, 0, 255, 1) 95%);
+    filter: blur(8px) brightness(0.7); 
+}
+
+body.fond-france::before {
+    background-image: url("../../img/854522.jpg")
+}
+
+body.fond-bretagne::before {
+    background-image: url("../../img/visu-decouvrir-autrement-tourisme-bretagne-durable.jpg");
+}
+
+body.fond-espagne::before {
+    background-image: url("../../img/Image-bateaux.jpg");
+}
+
+body.fond-france-bourbon::before {
+    background-image: url("../../img/Armoiries-des-bourbons.jpg");
+}
+
+/* --- STRUCTURE DE LA PAGE (Header + Nav) --- */
+header {
+    background-color: rgba(0, 0, 0, 0.6); /* Fond semi-transparent */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre tout verticalement */
+    border-bottom: 2px solid #d4af37; /* Liseré doré */
+}
+
+/* Titre du site */
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px black;
+}
+
+/* Zone de connexion (en haut à droite ou centré sous le titre) */
+.login-area {
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.login-area input {
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+}
+
+.login-area button {
+    padding: 5px 15px;
+    background-color: #d4af37;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #000;
+}
+
+.login-area button:hover {
+    background-color: #f3c845;
+}
+
+/* --- MENU HORIZONTAL --- */
+nav.menu-principal {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    position: sticky; /* Le menu reste en haut quand on scroll */
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+nav.menu-principal ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Rend le menu horizontal */
+    justify-content: center; /* Centre les liens */
+    flex-wrap: wrap;
+}
+
+nav.menu-principal li {
+    margin: 0;
+}
+
+nav.menu-principal a {
+    display: block;
+    padding: 15px 30px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+nav.menu-principal a:hover {
+    background-color: #d4af37; /* Couleur or au survol */
+    color: black;
+}
+
+/* --- CONTENU --- */
+.content {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond de contenu lisible */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+a { color: #d4af37; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+
+/* --- GALERIE DES ROIS (GRID) --- */
+.galerie-rois {
+    display: grid;
+    /* Crée des colonnes automatiques (minimum 200px de large) */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 30px; /* Espace entre les cartes */
+    padding: 20px 0;
+}
+
+/* La carte individuelle */
+.carte-roi {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #d4af37; /* Bordure dorée */
+    border-radius: 8px;
+    overflow: hidden; /* Pour que l'image ne dépasse pas au zoom */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none; /* Enlève le soulignement du lien */
+}
+
+/* Effet au survol de la souris */
+.carte-roi:hover {
+    transform: translateY(-5px); /* La carte monte légèrement */
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); /* Ombre dorée */
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* L'image du roi */
+.carte-roi img {
+    width: 100%;
+    height: 300px; /* Hauteur fixe pour uniformiser */
+    object-fit: cover; /* Recadre l'image sans la déformer */
+    border-bottom: 2px solid #d4af37;
+    filter: sepia(0.3); /* Un petit effet "vieilli" */
+    transition: filter 0.3s;
+}
+
+.carte-roi:hover img {
+    filter: sepia(0); /* L'image reprend ses couleurs au survol */
+}
+
+/* Le texte sous l'image */
+.infos-roi {
+    padding: 15px;
+}
+
+.infos-roi h3 {
+    margin: 0;
+    color: #d4af37;
+    font-size: 1.5em;
+    font-family: 'Cinzel', serif; /* Ou ta police par défaut */
+}
+
+.infos-roi p {
+    margin: 5px 0 0;
+    color: #ddd;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* Style de l'introduction */
+.intro {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.intro h2 {
+    color: #d4af37;
+    font-size: 2em;
+}
+
+/* Alignement horizontal des 3 sections */
+.grid-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Pour que ça reste lisible sur mobile */
+}
+
+/* Style des "boîtes" de section */
+.grid-container section {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet au survol des boîtes */
+.grid-container section:hover {
+    transform: translateY(-5px); /* La boîte monte légèrement */
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); /* Ombre dorée */
+}
+
+/* Titres des listes */
+.grid-container h2 {
+    color: #e2bc13;
+    border-bottom: 1px solid #d4af37;
+    padding-bottom: 10px;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+/* Style des liens */
+.grid-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.grid-container li {
+    margin: 12px 0;
+}
+
+.grid-container a {
+    text-decoration: none;
+    color: inherit; /* Garde la couleur du texte par défaut */
+    transition: color 0.2s;
+}
+
+.grid-container a:hover {
+    color: #c49705;
+    text-decoration: underline;
+}
