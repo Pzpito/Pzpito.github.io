@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -11,15 +11,9 @@
 
     <header>
         <h1>Histoire de la Bretagne</h1>
-        </header>
+    </header>
 
-    <nav class="menu-principal">
-        <ul>
-            <li><a href="../../index.html">Accueil</a></li>
-            <li><a href="../Espagne/espagne.html">Espagne</a></li>
-            <li><a href="../france/France.html">France</a></li>
-            <li><a href="Bretagne.html" style="color: #d4af37;">Bretagne</a></li> </ul>
-    </nav>
+    <div id="menu-placeholder"></div>
 
     <div class="content">
         <section>
@@ -36,5 +30,14 @@
         </section>
     </div>
 
+    <script>
+        fetch('/layout/nav.html') 
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-placeholder').innerHTML = data;
+            });
+    </script>
+
 </body>
 </html>
+

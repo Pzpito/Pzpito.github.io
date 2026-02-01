@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -13,20 +13,13 @@
     <h1>La Dynastie Capétienne (987–1328)</h1>
 </header>
 
-<nav class="menu-principal">
-    <ul>
-        <li><a href="../../../index.html">Accueil</a></li>
-        <li><a href="../../Espagne/espagne.html">Espagne</a></li>
-        <li><a href="../France.html">France</a></li>
-        <li><a href="../../Bretagne/Bretagne.html">Bretagne</a></li>
-    </ul>
-</nav>
+<div id="menu-placeholder"></div>
 
 <div class="content">
     <center>
         <h2>Tous les souverains capétiens</h2>
         <p>
-            De l’élection d’Hugues Capet en 987 à la mort de Charles IV en 1328,
+            De l'élection d'Hugues Capet en 987 à la mort de Charles IV en 1328,
             les Capétiens directs fondent la continuité monarchique française.
         </p>
     </center>
@@ -167,6 +160,13 @@
 
     </div>
 </div>
-
+<script>
+    fetch('/layout/nav.html') 
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        });
+</script>
 </body>
 </html>
+

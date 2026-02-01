@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -22,21 +22,15 @@
         </div>
     </header>
 
-    <nav class="menu-principal">
-        <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="pages/Espagne/espagne.html">Espagne (XIVe-XVIIe)</a></li>
-            <li><a href="pages/france/France.html">France (IVe-XVIIe)</a></li>
-            <li><a href="pages/Bretagne/Bretagne.html">Bretagne (IVe-XXe)</a></li>
-        </ul>
-    </nav>
+    <div id="menu-placeholder"></div>
 
     <div class="content">
         <h2>Découvrez l'histoire à travers les âges</h2>
         <p>Sélectionnez une période ou une région dans le menu ci-dessus pour commencer votre voyage.</p>
-        </div>
-
+    </div>
+    <script src="scripts/loader.js"></script>
     <script>
+        // 2. TON SCRIPT DE CONNEXION (GARDÉ TEL QUEL)
         const form = document.getElementById("login-form");
         const message = document.getElementById("message-connexion");
 
@@ -59,5 +53,6 @@
     </script>
 </body>
 </html>
+
 
 

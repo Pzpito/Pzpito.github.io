@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -13,13 +13,7 @@
     <h1>La Dynastie Mérovingienne (v. 481–751)</h1>
 </header>
 
-<nav class="menu-principal">
-    <ul>
-        <li><a href="../../../index.html">Accueil</a></li>
-        <li><a href="../France.html">France</a></li>
-        <li><a href="../../Bretagne/Bretagne.html">Bretagne</a></li>
-    </ul>
-</nav>
+    <div id="menu-placeholder"></div>
 
 <div class="content">
     <center>
@@ -99,6 +93,13 @@
 
     </div>
 </div>
-
+<script>
+    fetch('/layout/nav.html') 
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menu-placeholder').innerHTML = data;
+        });
+</script>
 </body>
 </html>
+
